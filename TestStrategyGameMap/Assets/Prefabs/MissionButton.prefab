@@ -282,6 +282,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bede9d7a878fa646b75748d72ec914d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
   _numberText: {fileID: 8880087206761563176}
   _missionDetailsPrefab: {fileID: 6799561550455080931, guid: 80b8d7960cad0474f98547a64309e4ab, type: 3}

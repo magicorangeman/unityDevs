@@ -43,5 +43,10 @@ MonoBehaviour:
     x: 0
     y: -20
   <Status>k__BackingField: 0
-  <PlayerUnits>k__BackingField: []
-  <EnemyUnits>k__BackingField: []
+  <PlayerUnits>k__BackingField:
+  - {fileID: 11400000, guid: 2b6d26ffca0ba904db0df32c6ad55f8b, type: 2}
+  <EnemyUnits>k__BackingField:
+  - {fileID: 11400000, guid: 03308b1518f6c114f8cf17ab1eced942, type: 2}
+  <IsDouble>k__BackingField: 0
+  <AssociatedMission>k__BackingField: {fileID: 0}
+  <Bounty>k__BackingField: {fileID: 0}
