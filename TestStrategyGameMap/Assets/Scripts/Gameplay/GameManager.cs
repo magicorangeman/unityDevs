@@ -9,7 +9,6 @@ namespace Gameplay
 		[SerializeField] private UIController _ui;
 		[SerializeField] private PlayerProgress _progress;
 		
-
 		private void Awake()
 		{
 			StartGame();
@@ -20,11 +19,12 @@ namespace Gameplay
 			_installer.Initialize();
 			_progress.Initialize();
 			_ui.Initialize(_progress);
+			_progress.OnMissionComplete += UpdateView;
 		}
 
-		private void StartMission()
+		private void UpdateView()
 		{
-			
+			_ui.Initialize(_progress);
 		}
 	}
 }

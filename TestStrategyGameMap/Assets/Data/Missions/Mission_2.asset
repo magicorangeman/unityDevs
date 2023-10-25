@@ -41,6 +41,20 @@ MonoBehaviour:
   <Coordinates>k__BackingField:
     x: 10
     y: -5
-  <Status>k__BackingField: 0
-  <PlayerUnits>k__BackingField: []
-  <EnemyUnits>k__BackingField: []
+  <Status>k__BackingField: 2
+  <PlayerUnits>k__BackingField:
+  - {fileID: 11400000, guid: 85712b0e159a7054891870b4b5a45343, type: 2}
+  <EnemyUnits>k__BackingField:
+  - {fileID: 11400000, guid: bfc4fdff829a86344865b83749a2ef19, type: 2}
+  <IsDouble>k__BackingField: 0
+  <AssociatedMission>k__BackingField: {fileID: 0}
+  <Bounty>k__BackingField:
+    AwardPoints: 5
+    newUnits:
+    - {fileID: 11400000, guid: bfc4fdff829a86344865b83749a2ef19, type: 2}
+    birdPoints: []
+  <UnlockingMission>k__BackingField:
+  - {fileID: 11400000, guid: c8436583583492849896a2039ed8117c, type: 2}
+  - {fileID: 11400000, guid: 409a22a1ea44d3d4babb23c3edb79b4b, type: 2}
+  <BlockingMission>k__BackingField:
+  - {fileID: 11400000, guid: 409a22a1ea44d3d4babb23c3edb79b4b, type: 2}

@@ -1,4 +1,5 @@
-﻿using MissionSystem;
+﻿using System.Linq;
+using MissionSystem;
 using UnityEngine;
 
 namespace UI
@@ -8,35 +9,35 @@ namespace UI
 		[SerializeField] private UIMap _uiMap;
 		[SerializeField] private UICardSelector _cardSelector;
 
-		private bool _isViewMissionDetailsOn;
-		
 		private ViewMission _activeView;
-		private ViewMissionDetails _activeMission;
-		
-		private void Awake()
+
+		public void GetViewMissionList()
 		{
-			_uiMap.OnSelectMission += ViewMissionDetails;
-			_uiMap.OnStartMission += StartMission;
+			foreach (var viewMission in _uiMap.ViewMissions.Where(x=> x.Mission.Status != MissionState.BLOCKED))
+			{
+				viewMission.ViewButtonClicked += ViewMissionDetails;
+			}
 		}
 
-		private void ViewMissionDetails(ViewMission mission)
+		private void ViewMissionDetails(ViewMission viewMission)
 		{
-			if (_activeView == mission)
+			if (_activeView == viewMission)
 			{
-				mission.HideMissionDetails();
-				_isViewMissionDetailsOn = false;
+				_activeView.Details.OnStartButtonClicked -= StartMission;
+				viewMission.HideDetails();
 				_activeView = null;
+				
 				return;
 			}
 
-			if (_isViewMissionDetailsOn)
+			if (_activeView != null)
 			{
-				_activeView.HideMissionDetails();
+				_activeView.HideDetails();
 			}
 			
-			mission.ViewMissionDetails();
-			_activeView = mission;
-			_isViewMissionDetailsOn = true;
+			viewMission.ViewDetails();
+			_activeView = viewMission;
+			_activeView.Details.OnStartButtonClicked += StartMission;
 		}
 
 		private void StartMission(ViewMissionDetails details)
@@ -46,16 +47,23 @@ namespace UI
 				return;
 			}
 
-			_activeMission = details;
+			if (!_activeView.Mission.PlayerUnits.Contains(_cardSelector.SelectedCard.Bird))
+			{
+				return;
+			}
+			
 			details.ViewMissionScreen();
-			details.OnEndMission += EndMission;
+			details.OnStartButtonClicked -= StartMission;
+			_activeView.Details.MissionScreen.OnEndMission += EndMission;
 		}
 
-		private void EndMission()
+		private void EndMission(ViewMissionScreen screen)
 		{
-			_activeMission.OnEndMission -= EndMission;
-			_activeMission.HideMissionScreen();
-			_activeView.HideMissionDetails();
+			screen.OnEndMission -= EndMission;
+			_activeView.Details.HideMissionScreen();
+			_activeView.HideDetails();
+			_activeView.Mission.EarnBounty(_cardSelector.SelectedCard.Bird);
+			_activeView = null;
 		}
 	}
 }

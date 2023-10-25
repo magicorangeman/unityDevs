@@ -2,9 +2,9 @@
 {
 	public enum MissionState
 	{
-		Active,
-		Hiddlen,
-		Blocked,
-		Complete
+		ACTIVE,
+		HIDDEN,
+		BLOCKED,
+		COMPLETE
 	}
 }

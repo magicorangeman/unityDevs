@@ -9,6 +9,5 @@ namespace Player
 	{
 		[field: SerializeField] public BirdCardData[] AvailableBirds { get; private set; }
 		[field: SerializeField] public MissionData[] MissionsList { get; private set; }
-		[field: SerializeField] public int Points { get; private set; }
 	}
 }

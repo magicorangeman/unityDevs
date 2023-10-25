@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AvailableBirds>k__BackingField:
   - {fileID: 11400000, guid: 2b6d26ffca0ba904db0df32c6ad55f8b, type: 2}
-  - {fileID: 11400000, guid: 1844e20db8adfea4096e2edc3909b669, type: 2}
   <MissionsList>k__BackingField:
   - {fileID: 11400000, guid: 153c00596c954c64ea43244e38dbeb67, type: 2}
   - {fileID: 11400000, guid: 467ea858f967d15458b2bce3770c84fa, type: 2}
@@ -26,4 +25,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 409a22a1ea44d3d4babb23c3edb79b4b, type: 2}
   - {fileID: 11400000, guid: 160de5fad76745e4eb463bd1c24efc95, type: 2}
   - {fileID: 11400000, guid: 183c3b7d8d5be364d8eca22be7d41382, type: 2}
-  <Points>k__BackingField: 10

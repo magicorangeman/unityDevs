@@ -45,6 +45,7 @@ namespace UI
 			foreach (var birdCard in _birdCards)
 			{
 				birdCard.CardSelected -= InvokeWhenSelectCard;
+				birdCard.Hide();
 			}
 		}
 	}

@@ -1,5 +1,4 @@
 ﻿using System;
-using Gameplay;
 using MissionSystem;
 using TMPro;
 using UnityEngine;
@@ -11,18 +10,17 @@ namespace UI
 		[SerializeField] private TMP_Text _name;
 		[SerializeField] private TMP_Text _description;
 		[SerializeField] private GameObject _missionScreenPrefab;
-
+		
+		public ViewMissionScreen MissionScreen { get; private set; }
 		private Mission _mission;
-		private GameObject _missionScreen;
+		private GameObject _missionScreenObject;
 		
 		public event Action<ViewMissionDetails> OnStartButtonClicked;
-		public event Action OnEndMission;
 
 		public void Initialize(Mission mission)
 		{
-			var data = Installer.MissionData[mission];
-			_name.text = data.Name;
-			_description.text = data.Annotation;
+			_name.text = mission.Name;
+			_description.text = mission.Description;
 			_mission = mission;
 		}
 		
@@ -33,19 +31,15 @@ namespace UI
 
 		public void ViewMissionScreen()
 		{
-			_missionScreen = Instantiate(_missionScreenPrefab, default, default, transform.parent.parent);
-			var missionScreen = _missionScreen.GetComponent<ViewMissionScreen>();
-			missionScreen.Initialize(_mission);
-			missionScreen.OnEndMission += InvokeWhenEnd;
+			_missionScreenObject = Instantiate(_missionScreenPrefab, default, default, transform.parent.parent);
+			MissionScreen = _missionScreenObject.GetComponent<ViewMissionScreen>();
+			MissionScreen.Initialize(_mission);
 		}
 		
 		public void HideMissionScreen()
 		{
-			_missionScreen.GetComponent<ViewMissionScreen>().OnEndMission -= InvokeWhenEnd;
-			Destroy(_missionScreen);
-			_missionScreen = null;
+			Destroy(_missionScreenObject);
+			_missionScreenObject = null;
 		}
-
-		private void InvokeWhenEnd() => OnEndMission?.Invoke();
 	}
 }

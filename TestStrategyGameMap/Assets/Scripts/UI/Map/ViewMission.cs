@@ -1,29 +1,31 @@
 using System;
-using Gameplay;
 using TMPro;
 using UI;
 using UnityEngine;
+using Button = UnityEngine.UI.Button;
 
 namespace MissionSystem
 {
 	public class ViewMission : MonoBehaviour
 	{
 		[SerializeField] private TMP_Text _numberText;
+		[SerializeField] private Button _button;
 		[SerializeField] private GameObject _missionDetailsPrefab;
 
-		private Mission _mission;
+		public Mission Mission { get; private set; }
+		public ViewMissionDetails Details { get; private set; }
 		
 		public event Action<ViewMission> ViewButtonClicked;
+
+		private GameObject _detailsObject;
+
 		
-		public event Action<ViewMissionDetails> StartButtonClicked;
 
-		private GameObject _details;
-
-		public void Initialize(Mission mission)
+		public void View(Mission mission)
 		{
-			var data = Installer.MissionData[mission];
-			_mission = mission;
-			_numberText.text = data.Number.ToString();
+			Mission = mission;
+			_numberText.text = mission.Number;
+			SetStatusButton(mission.Status);
 		}
 
 		public void ClickButton()
@@ -31,23 +33,37 @@ namespace MissionSystem
 			ViewButtonClicked?.Invoke(this);
 		}
 
-		public void ViewMissionDetails()
+		public void ViewDetails()
 		{
-			_details = Instantiate(_missionDetailsPrefab, _missionDetailsPrefab.transform.position, default, transform);
-			
-			var missionDetails = _details.GetComponent<ViewMissionDetails>();
-			missionDetails.Initialize(_mission);
-			
-			missionDetails.OnStartButtonClicked += InvokeWhenStart;
+			_detailsObject = Instantiate(_missionDetailsPrefab, _missionDetailsPrefab.transform.position, default, transform);
+			Details = _detailsObject.GetComponent<ViewMissionDetails>();
+			Details.Initialize(Mission);
 		}
 
-		public void HideMissionDetails()
+		public void HideDetails()
 		{
-			_details.GetComponent<ViewMissionDetails>().OnStartButtonClicked -= InvokeWhenStart;
-			Destroy(_details);
-			_details = null;
+			Destroy(_detailsObject);
+			_detailsObject = null;
 		}
 
-		private void InvokeWhenStart(ViewMissionDetails details) => StartButtonClicked?.Invoke(details);
+		private void SetStatusButton(MissionState state)
+		{
+			switch (state)
+			{
+				case MissionState.BLOCKED:
+					_button.image.color = Color.red;
+					break;
+				case MissionState.ACTIVE:
+					_button.image.color = Color.green;
+					break;
+				case MissionState.COMPLETE:
+					_button.enabled = false;
+					break;
+				case MissionState.HIDDEN:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(state), state, null);
+			}
+		}
 	}
 }

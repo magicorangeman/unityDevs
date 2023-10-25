@@ -11,7 +11,6 @@ namespace UI
 		
 		private bool _isBirdCardSelected;
 		
-
 		private void Awake()
 		{
 			_panel.OnCardSelect += SelectBirdCard;

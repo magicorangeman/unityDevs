@@ -1,6 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Gameplay;
+using System.Linq;
 using MissionSystem;
 using UnityEngine;
 
@@ -10,33 +9,32 @@ namespace UI
 	{
 		[SerializeField] private GameObject _missionPrefab;
 
-		private List<ViewMission> _missions = new();
-
-		public event Action<ViewMission> OnSelectMission;
-		public event Action<ViewMissionDetails> OnStartMission;
+		private List<GameObject> _viewMissionsObjects = new();
+		public List<ViewMission> ViewMissions { get; private set; } = new();
 
 		public void GenerateMap(List<Mission> missions)
 		{
-			foreach (var mission in missions)
+			foreach (var viewMissionsObject in _viewMissionsObjects)
+			{
+				Destroy(viewMissionsObject);
+			}
+			
+			_viewMissionsObjects.Clear();
+			
+			foreach (var mission in missions.Where(x => x.Status != MissionState.HIDDEN))
 			{
 				var missionObject = ViewMissionOnMap(mission);
-				var missionButton = missionObject.GetComponent<ViewMission>();
-				missionButton.Initialize(mission);
-				_missions.Add(missionButton);
-			
-				missionButton.ViewButtonClicked += InvokeWhenSelect;
-				missionButton.StartButtonClicked += InvokeWhenStart;
+				var viewMission = missionObject.GetComponent<ViewMission>();
+				viewMission.View(mission);
+				ViewMissions.Add(viewMission);
+				_viewMissionsObjects.Add(missionObject);
 			}
 		}
 
 		private GameObject ViewMissionOnMap(Mission mission)
 		{
-			var data = Installer.MissionData[mission];
-			var position = new Vector2(data.Coordinates.x, data.Coordinates.y);
-			return Instantiate(_missionPrefab, position, Quaternion.identity, transform);
+			var position = new Vector2(mission.Coordinates.x, mission.Coordinates.y);
+			return Instantiate(_missionPrefab, position, default, transform);
 		}
-		
-		private void InvokeWhenSelect(ViewMission mission) => OnSelectMission?.Invoke(mission);
-		private void InvokeWhenStart(ViewMissionDetails details) => OnStartMission?.Invoke(details);
 	}
 }

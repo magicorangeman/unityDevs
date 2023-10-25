@@ -12,5 +12,10 @@ namespace Units
 			Name = data.birdName;
 			Points = data.points;
 		}
+
+		public void GainPoints(int points)
+		{
+			Points += points;
+		}
 	}
 }

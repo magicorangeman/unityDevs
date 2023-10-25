@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Units;
 
-public class Bounty : MonoBehaviour
+namespace Gameplay
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[System.Serializable]
+	public class Bounty
+	{
+		public int AwardPoints;
+		public BirdCardData[] newUnits; 
+		public BirdPoints[] birdPoints;
+	}
 }

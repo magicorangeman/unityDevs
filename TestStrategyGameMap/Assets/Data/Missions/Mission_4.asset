@@ -39,6 +39,12 @@ MonoBehaviour:
   <Coordinates>k__BackingField:
     x: 15
     y: 20
-  <Status>k__BackingField: 0
+  <Status>k__BackingField: 1
   <PlayerUnits>k__BackingField: []
   <EnemyUnits>k__BackingField: []
+  <IsDouble>k__BackingField: 0
+  <AssociatedMission>k__BackingField: {fileID: 0}
+  <Bounty>k__BackingField:
+    globalPoints: 0
+    newUnits: []
+    birdPoints: []

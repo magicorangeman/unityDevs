@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4ae33e13c34cd191df51a811f2cec6, type: 3}
   m_Name: Mission_3_1
   m_EditorClassIdentifier: 
-  <Number>k__BackingField: 3
+  <Number>k__BackingField: 3.1
   <Name>k__BackingField: "\u0412\u043E\u0440\u043E\u043D\u044B \u043F\u0440\u043E\u0442\u0438\u0432
     \u0441\u043E\u0432"
   <Annotation>k__BackingField: "\u0412 \u0427\u0430\u0449\u0435 \u0442\u0435\u043C\u043D\u043E
@@ -48,9 +48,19 @@ MonoBehaviour:
   <Coordinates>k__BackingField:
     x: -25
     y: -5
-  <Status>k__BackingField: 0
-  <PlayerUnits>k__BackingField: []
-  <EnemyUnits>k__BackingField: []
+  <Status>k__BackingField: 2
+  <PlayerUnits>k__BackingField:
+  - {fileID: 11400000, guid: 2b6d26ffca0ba904db0df32c6ad55f8b, type: 2}
+  - {fileID: 11400000, guid: 85712b0e159a7054891870b4b5a45343, type: 2}
+  <EnemyUnits>k__BackingField:
+  - {fileID: 11400000, guid: 03308b1518f6c114f8cf17ab1eced942, type: 2}
   <IsDouble>k__BackingField: 1
   <AssociatedMission>k__BackingField: {fileID: 11400000, guid: f09e75c64dee44449b895b2e0b4244bf, type: 2}
-  <Bounty>k__BackingField: {fileID: 0}
+  <Bounty>k__BackingField:
+    AwardPoints: 5
+    newUnits: []
+    birdPoints:
+    - <Bird>k__BackingField: {fileID: 11400000, guid: 03308b1518f6c114f8cf17ab1eced942, type: 2}
+      <Points>k__BackingField: -10
+  <UnlockingMission>k__BackingField: []
+  <BlockingMission>k__BackingField: []

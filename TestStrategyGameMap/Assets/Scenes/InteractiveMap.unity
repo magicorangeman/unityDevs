@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiMap: {fileID: 504713678}
+  _uiMission: {fileID: 504713680}
   _panel: {fileID: 1900738477}
 --- !u!114 &504713680
 MonoBehaviour:
@@ -417,7 +418,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b375713721d5f624cbb45d0063c9ead4, type: 2}
   - {fileID: 11400000, guid: 10ba2660b2e7ed7428e61f31563890a2, type: 2}
   - {fileID: 11400000, guid: 84f137b997287f749b8761edd8716ff2, type: 2}
-  - {fileID: 11400000, guid: 1844e20db8adfea4096e2edc3909b669, type: 2}
 --- !u!1 &1546904284
 GameObject:
   m_ObjectHideFlags: 0

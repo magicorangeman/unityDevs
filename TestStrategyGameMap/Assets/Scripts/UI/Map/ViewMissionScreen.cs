@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Gameplay;
 using MissionSystem;
 using TMPro;
 using UnityEngine;
@@ -13,21 +12,20 @@ namespace UI
 		[SerializeField] private TMP_Text _missionContext;
 		[SerializeField] private TMP_Text _playerUnits;
 		[SerializeField] private TMP_Text _enemyUnits;
-
-		public event Action OnEndMission;
+		
+		public event Action<ViewMissionScreen> OnEndMission;
 
 		public void Initialize(Mission mission)
 		{
-			var data = Installer.MissionData[mission];
-			_missionName.text = data.Name;
-			_missionContext.text = data.MissionContext;
-			_playerUnits.text = string.Join("\n", data.PlayerUnits.Select(x => x.birdName));
-			_enemyUnits.text = string.Join("\n", data.EnemyUnits.Select(x => x.birdName));
+			_missionName.text = mission.Name;
+			_missionContext.text = mission.MissionContext;
+			_playerUnits.text = string.Join("\n", mission.PlayerUnits.Select(x => x.Name));
+			_enemyUnits.text = string.Join("\n", mission.EnemyUnits.Select(x => x.Name));
 		}
 
 		public void EndMission()
 		{
-			OnEndMission?.Invoke();
+			OnEndMission?.Invoke(this);
 		}
 	}
 }
