@@ -2,7 +2,7 @@
 using Units;
 using UnityEngine;
 
-namespace Gameplay
+namespace Parameters
 {
 	[Serializable]
 	public class BirdPoints

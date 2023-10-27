@@ -1,6 +1,6 @@
 using Units;
 
-namespace Gameplay
+namespace Parameters
 {
 	[System.Serializable]
 	public class Bounty

@@ -1,4 +1,5 @@
-﻿using Units;
+﻿using System;
+using Units;
 using UnityEngine;
 
 namespace UI
@@ -8,9 +9,7 @@ namespace UI
 		[SerializeField] private UIPlayerPanel _panel;
 		
 		public BirdCard SelectedCard { get; private set; }
-		
-		private bool _isBirdCardSelected;
-		
+
 		private void Awake()
 		{
 			_panel.OnCardSelect += SelectBirdCard;
@@ -21,19 +20,22 @@ namespace UI
 			if (SelectedCard == card)
 			{
 				SelectedCard.Hide();
-				_isBirdCardSelected = false;
 				SelectedCard = null;
 				return;
 			}
 
-			if (_isBirdCardSelected)
+			if (SelectedCard != null)
 			{
 				SelectedCard.Hide();
 			}
 			
 			card.Show();
 			SelectedCard = card;
-			_isBirdCardSelected = true;
+		}
+
+		private void OnDestroy()
+		{
+			_panel.OnCardSelect -= SelectBirdCard;
 		}
 	}
 }

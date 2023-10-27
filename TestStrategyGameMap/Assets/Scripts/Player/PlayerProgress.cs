@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Gameplay;
 using MissionSystem;
+using Parameters;
 using Player;
 using Units;
 using UnityEngine;
@@ -62,5 +63,13 @@ public class PlayerProgress : MonoBehaviour
 	private void UpdateMissionProgress()
 	{
 		OnMissionComplete?.Invoke();
+	}
+
+	private void OnDestroy()
+	{
+		foreach (var mission in AvailableMissions)
+		{
+			mission.OnGainBounty -= GetBounty;
+		}
 	}
 }

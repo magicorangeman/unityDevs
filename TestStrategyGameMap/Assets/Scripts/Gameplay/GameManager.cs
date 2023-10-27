@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using System;
+using UI;
 using UnityEngine;
 
 namespace Gameplay
@@ -18,13 +19,18 @@ namespace Gameplay
 		{
 			_installer.Initialize();
 			_progress.Initialize();
-			_ui.Initialize(_progress);
 			_progress.OnMissionComplete += UpdateView;
+			_ui.Initialize(_progress);
 		}
 
 		private void UpdateView()
 		{
 			_ui.Initialize(_progress);
+		}
+
+		private void OnDestroy()
+		{
+			_progress.OnMissionComplete -= UpdateView;
 		}
 	}
 }

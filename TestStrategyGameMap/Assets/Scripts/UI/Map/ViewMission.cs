@@ -18,9 +18,7 @@ namespace MissionSystem
 		public event Action<ViewMission> ViewButtonClicked;
 
 		private GameObject _detailsObject;
-
 		
-
 		public void View(Mission mission)
 		{
 			Mission = mission;

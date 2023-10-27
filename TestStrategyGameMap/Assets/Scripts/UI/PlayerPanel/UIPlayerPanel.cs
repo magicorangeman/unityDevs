@@ -10,6 +10,7 @@ namespace UI
 		[SerializeField] private GameObject _birdCardPrefab;
 		
 		private List<BirdCard> _birdCards = new();
+		
 		public event Action<BirdCard> OnCardSelect;
 
 		public void ViewAvailableUnits(List<Bird> birds)
